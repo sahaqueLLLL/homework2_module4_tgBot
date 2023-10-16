@@ -1,6 +1,7 @@
 package org.example;
 
 import functions.FilterOperations;
+import functions.ImagesOperation;
 import utils.ImageUtils;
 import utils.RgbMaster;
 
@@ -33,10 +34,10 @@ public class PhotoMessageUtils {
         inputStream.close();
         outputStream.close();
     }
-    public static void processingImage(String fileName) throws Exception {
+    public static void processingImage(String fileName, ImagesOperation operation) throws Exception {
         final BufferedImage image = ImageUtils.getImage(fileName);
         final RgbMaster rgbMaster = new RgbMaster(image);
-        rgbMaster.changeImage(FilterOperations::grayScale);
+        rgbMaster.changeImage(operation);
         ImageUtils.saveImage(rgbMaster.getImage(), fileName);
     }
 }
